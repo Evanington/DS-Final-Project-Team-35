@@ -13,6 +13,8 @@
 
 
     <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <!-- VueJs Script-->
+    <script src="https://unpkg.com/vue@next"></script>
   </head>
     
 
@@ -71,7 +73,7 @@
           <p class = 'earlylife col-lg-8 col-md-8 col-sm-8 col-xs-8'> 
   
           </div>
-          <div id='random' class='container'>   
+          <div id="controller" class='container'>   
             <table id = 'taskTable' class ='table table-bordered table-striped table-hover table-condensed'>
               <thead>
                 <tr>
@@ -84,17 +86,17 @@
                 </tr>
               </thead>
         
-              <!-- <tbody>
-                <tr v-for= "book in books">
-                  <td>{{book.title}}</td>
-                  <td>{{book.author}}</td>
-                  <td>{{book.year_published}}</td>
-                  <td>{{book.publisher}}</td>
-                  <td>{{book.page_count}}</td>
-                  <td>{{prettyDollar (book.msrp)}}</td>
+              <tbody>
+                <tr v-for= "ref in refereeList">
+                  <td>{{ref.RefID}}</td>
+                  <td>{{ref.Name}}</td>
+                  <td>{{ref.Age}}</td>
+                  <td>{{ref.Grade}}</td>
+                  <td>{{ref.PosStatus}}</td>
+                  <td>{{ref.RefereeSkillRating}}</td>
         
                 </tr>
-              </tbody> -->
+              </tbody>
             </table>
             </div>
       <div class = 'row'>
@@ -138,5 +140,7 @@
         </footer>
       </div>
     </div>
+    <script src="js/controller.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
   </body>
 </html>

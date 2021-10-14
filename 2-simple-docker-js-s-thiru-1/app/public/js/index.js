@@ -22,4 +22,4 @@ created() {
 }
 }
 
-Vue.createApp(Controller).mount('#index')
+Vue.createApp(Controller).mount('#controller')
