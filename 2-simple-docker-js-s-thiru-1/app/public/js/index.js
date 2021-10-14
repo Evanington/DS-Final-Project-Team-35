@@ -1,57 +1,25 @@
 const Person = {
   data() {
     return {
-      "person": {},
-      "books": []
-
+      refereeList: []
       }
   },
 
-  computed: {
-    prettyBirthday() {
-        return dayjs(this.person.dob.date)
-        .format('D MMM YYYY')
+  methods: {
+    fetchRefereeList() {
+        fetch('/api/referee/index.php')
+        .then( response => response.json() )
+        .then( (responseJson) => {                
+            this.refereeList = responseJson;                
+        })
+        .catch( (err) => {
+            console.error(err);
+        })
     }
-  },
-
-  methods:{
-    prettyDollar(n) {
-      const d = new Intl.NumberFormat("en-US").format(n);
-      return "$ " + d;
-  },
-    fetchUserData() {
-      fetch('https://randomuser.me/api/')
-      .then(response => response.json())
-      .then((parsedJson) => {
-          console.log(parsedJson);
-          this.person = parsedJson.results[0]
-          console.log("C");
-      })
-      .catch( err => {
-          console.error(err)
-      })
-
-      console.log("B");
-  },
-    fetchBooks() {
-      fetch('/api/books/')
-      .then(response => response.json())
-      .then((parsedJson) => {
-          console.log(parsedJson);
-          this.books = parsedJson
-          console.log("C");
-      })
-      .catch( err => {
-          console.error(err)
-      })
-
-      console.log("B");
+},
+created() {
+    this.fetchRefereeList();
 }
-  },
-  created() {
-    this.fetchUserData();
-    this.fetchBooks();  
-  }
 }
 
-Vue.createApp(Person).mount('#random');
+Vue.createApp(Controller).mount('#index')
