@@ -56,17 +56,17 @@
 
     <main class = 'row'>
       <!-- <div class = 'one col-lg-12 col-md-12 col-sm-12 col-xs-12'> -->
-      <h2>Books About Michael Jordan</h2>
-    <div id='random' class='container'>   
+      <h2>Game Information</h2>
+    <div id='random' class='container'>
+      <p>Please find game information outlined in the table below. For urgent inquiries, contact the main office.</p>
+      <p>Note: field names and times are subject to change based on availability and inclement weather.</p>     
     <table id = 'taskTable' class ='table table-bordered table-striped table-hover table-condensed'>
       <thead>
         <tr>
-          <th class='text-center'>Title</th> 
-          <th class='text-center'>Author</th>
-          <th class='text-center'>Year Published</th>
-          <th class='text-center'>Publisher</th>
-          <th class='text-center'>Page Count</th>
-          <th class='text-center'>MSRP</th>
+          <th class='text-center'>Game ID</th> 
+          <th class='text-center'>Field Name</th>
+          <th class='text-center'>Time</th>
+          <th class='text-center'>Referee ID</th>
         </tr>
       </thead>
 
@@ -87,19 +87,14 @@
 
     <form>
       <div class = 'one col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-        <label for ='title'>Title: <input type='text' name='title' id='title' placeholder='Enter Title'></label>
+        <label for ='game_id'>Game ID: <input type='text' name='game_id' id='game_id' placeholder='Enter Game ID'></label>
 
-        <label for ='lastname'>Author: <input type='text' name='author' id='author' placeholder='Enter Author Name'></label>
+        <label for ='field_name'>Field Name: <input type='text' name='field_name' id='field_name' placeholder='Enter Field Name'></label>
 
-        <label for ='yearpublished'>Year Published: <input type='text' name='yearpublished' id='yearpublished' placeholder='Enter Year Published'></label>
+        <label for ='time'>Time: <input type='text' name='time' id='time' placeholder='Enter Time'></label>
 
-        <label for ='publisher'>Publisher: <input type='text' name='publisher' id='publisher' placeholder='Enter Publisher Name'></label>
-
-        <label for ='pagecount'>Page Count: <input type='text' name='pagecount' id='pagecount' placeholder='Enter Page Count'></label>
-
-        <label for ='msrp'>MSRP: <input type='text' name='msrp' id='msrp' placeholder='Enter MSRP'></label>
-
-        
+        <label for ='referee_id'>Referee ID: <input type='text' name='referee_id' id='referee_id' placeholder='Enter Referee ID'></label>
+       
 
         <input class='button' type='submit'>
 
@@ -108,7 +103,11 @@
 
       
     </main>
-
+    <div class="center">
+      <footer>
+      |  Referee Information Center | <i>Supporting Your Love of the Game</i> | 
+      </footer>
+    </div>
     </div>
     <script src="js/tablesort.min.js"></script>
     <script>

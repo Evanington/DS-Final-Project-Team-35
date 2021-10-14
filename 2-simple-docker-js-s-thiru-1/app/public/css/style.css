@@ -1,7 +1,6 @@
 header{
   background: maroon;
   color: lightgoldenrodyellow;
-  font-family: cursive;
   padding: 10px;
 }
 
@@ -17,41 +16,25 @@ body{
 nav{
   background: lightgray;
   padding: 5px;
-  font-family: 'Courier New', Courier, monospace;
 }
 
 h1{
   margin: 0px;
-}
-
-h2{
-  font-family: Arial, Helvetica, sans-serif;
-}
-
+} 
 h3{
   background-color: maroon;
   border: 10px solid maroon;
   border-radius: 10px;
   color: lightgoldenrodyellow;
-  font-family: cursive;
   padding-left: 2px;
 }
 
-h4{
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 .earlylife{
-  font-family: cursive;
   font-size: 20px;
 }
 
 #aboutjordan{
   background-color: powderblue;
-}
-
-p{
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 /** tablesort **/
@@ -87,4 +70,13 @@ th[aria-sort]:not(.no-sort):after {
 th[role=columnheader]:not(.no-sort):hover:after {
 	visibility: visible;
 	opacity: 1;
+}
+footer {
+    background-color: white;
+    padding: 20px;
+    text-align: center;
+    margin-top: 20px;
+    color: brown;
+}
+ 
 }
