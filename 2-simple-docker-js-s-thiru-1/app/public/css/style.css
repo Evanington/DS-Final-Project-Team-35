@@ -1,0 +1,90 @@
+header{
+  background: maroon;
+  color: lightgoldenrodyellow;
+  font-family: cursive;
+  padding: 10px;
+}
+
+a{
+  color: blue;
+  font-weight: bold;
+}
+
+body{
+  background-color: cornsilk;
+}
+
+nav{
+  background: lightgray;
+  padding: 5px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+h1{
+  margin: 0px;
+}
+
+h2{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h3{
+  background-color: maroon;
+  border: 10px solid maroon;
+  border-radius: 10px;
+  color: lightgoldenrodyellow;
+  font-family: cursive;
+  padding-left: 2px;
+}
+
+h4{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.earlylife{
+  font-family: cursive;
+  font-size: 20px;
+}
+
+#aboutjordan{
+  background-color: powderblue;
+}
+
+p{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/** tablesort **/
+th[role=columnheader]:not(.no-sort) {
+	cursor: pointer;
+}
+
+th[role=columnheader]:not(.no-sort):after {
+	content: '';
+	float: right;
+	margin-top: 7px;
+	border-width: 0 4px 4px;
+	border-style: solid;
+	border-color: #404040 transparent;
+	visibility: hidden;
+	opacity: 0;
+	-ms-user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+
+th[aria-sort=ascending]:not(.no-sort):after {
+	border-bottom: none;
+	border-width: 4px 4px 0;
+}
+
+th[aria-sort]:not(.no-sort):after {
+	visibility: visible;
+	opacity: 0.4;
+}
+
+th[role=columnheader]:not(.no-sort):hover:after {
+	visibility: visible;
+	opacity: 1;
+}

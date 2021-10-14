@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://unpkg.com/vue@next"></script>
+
+
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+  </head>
+    
+
+  <body>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+    <div class = 'container'>
+    <header class = 'row'>
+
+      <div class = 'col-lg-6 col-md-6 col-sm-6 col-xs-6'>
+        <h1>Michael "The Goat" Jordan</h1>
+      </div>
+
+    </header>
+      
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+      <a class="navbar-brand" href="#"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="index.html">User Information </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Early_Life.html">Early Life </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="Books.html">Books about MJ </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+    <main class = 'row'>
+      <!-- <div class = 'one col-lg-12 col-md-12 col-sm-12 col-xs-12'> -->
+      <h2>Books About Michael Jordan</h2>
+    <div id='random' class='container'>   
+    <table id = 'taskTable' class ='table table-bordered table-striped table-hover table-condensed'>
+      <thead>
+        <tr>
+          <th class='text-center'>Title</th> 
+          <th class='text-center'>Author</th>
+          <th class='text-center'>Year Published</th>
+          <th class='text-center'>Publisher</th>
+          <th class='text-center'>Page Count</th>
+          <th class='text-center'>MSRP</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr v-for= "book in books">
+          <td>{{book.title}}</td>
+          <td>{{book.author}}</td>
+          <td>{{book.year_published}}</td>
+          <td>{{book.publisher}}</td>
+          <td>{{book.page_count}}</td>
+          <td>{{prettyDollar (book.msrp)}}</td>
+
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+
+    <form>
+      <div class = 'one col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+        <label for ='title'>Title: <input type='text' name='title' id='title' placeholder='Enter Title'></label>
+
+        <label for ='lastname'>Author: <input type='text' name='author' id='author' placeholder='Enter Author Name'></label>
+
+        <label for ='yearpublished'>Year Published: <input type='text' name='yearpublished' id='yearpublished' placeholder='Enter Year Published'></label>
+
+        <label for ='publisher'>Publisher: <input type='text' name='publisher' id='publisher' placeholder='Enter Publisher Name'></label>
+
+        <label for ='pagecount'>Page Count: <input type='text' name='pagecount' id='pagecount' placeholder='Enter Page Count'></label>
+
+        <label for ='msrp'>MSRP: <input type='text' name='msrp' id='msrp' placeholder='Enter MSRP'></label>
+
+        
+
+        <input class='button' type='submit'>
+
+      </div>
+      </form>
+
+      
+    </main>
+
+    </div>
+    <script src="js/tablesort.min.js"></script>
+    <script>
+      // Tablesort plugin from http://tristen.ca/tablesort/demo/
+      new Tablesort(document.getElementById('taskTable'));
+    </script>
+    <script src="js/index.js"></script>
+  </body>
+</html>
