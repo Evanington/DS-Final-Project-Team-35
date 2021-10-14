@@ -78,13 +78,36 @@
             <a href="https://en.wikipedia.org/wiki/Michael_Jordan" target="_blank">https://en.wikipedia.org/wiki/Michael_Jordan</a>
             </p>
           </div>
-      
+          <div id='random' class='container'>   
+            <table id = 'taskTable' class ='table table-bordered table-striped table-hover table-condensed'>
+              <thead>
+                <tr>
+                  <th class='text-center'>RefId</th> 
+                  <th class='text-center'>Referee Name</th>
+                  <th class='text-center'>Referee Age</th>
+                  <th class='text-center'>Referee Grade</th>
+                  <th class='text-center'>Position Status</th>
+                  <th class='text-center'>Referee Status</th>
+                </tr>
+              </thead>
+        
+              <!-- <tbody>
+                <tr v-for= "book in books">
+                  <td>{{book.title}}</td>
+                  <td>{{book.author}}</td>
+                  <td>{{book.year_published}}</td>
+                  <td>{{book.publisher}}</td>
+                  <td>{{book.page_count}}</td>
+                  <td>{{prettyDollar (book.msrp)}}</td>
+        
+                </tr>
+              </tbody> -->
+            </table>
+            </div>
       <div class = 'row'>
       <h3>College Career</h3>
       <p class = "earlylife">
-      As a freshman in coach Dean Smith's team-oriented system, Jordan was named ACC Freshman of the Year after he averaged 13.4 ppg on 53.4% shooting (field goal percentage).[28] He made the game-winning jump shot in the 1982 NCAA Championship game against Georgetown, which was led by future NBA rival Patrick Ewing.[29] Jordan later described this shot as the major turning point in his basketball career.[30][31] During his three seasons with the Tar Heels, he averaged 17.7 ppg on 54.0% shooting, and added 5.0 rpg.[32]
-
-      Jordan was selected by consensus to the NCAA All-American First Team in both his sophomore (1983) and junior (1984) seasons. After winning the Naismith and the Wooden College Player of the Year awards in 1984, Jordan left North Carolina one year before his scheduled graduation to enter the 1984 NBA draft. Jordan returned to North Carolina to complete his degree in 1986,[33] when he graduated with a Bachelor of Arts degree in geography.[34] In 2002, Jordan was named to the ACC 50th Anniversary men's basketball team honoring the 50 greatest players in ACC history.[35] 
+       
       
 
       <cite>Source: </cite>
@@ -93,6 +116,27 @@
       </p>
       </div>
     
+      <form>
+        <div class = 'one col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+          <label for ='RefId'>RefId: <input type='text' name='refid' id='title' placeholder='Enter RefId'></label>
+  
+          <label for ='RefName'>Referee Name: <input type='text' name='refname' id='author' placeholder='Enter Name'></label>
+  
+          <label for ='RefAge'>Referee Age: <input type='text' name='refage' id='yearpublished' placeholder='Enter Referee Age'></label>
+  
+          <label for ='RefGrade'>Referee Grade: <input type='text' name='refgrade' id='publisher' placeholder='Enter Referee Grade'></label>
+  
+          <label for ='PositionStatus'>Position Status: <input type='text' name='pagecount' id='pagecount' placeholder='Enter Position Status'></label>
+  
+          <label for ='RefereeStatus'>Referee Status: <input type='text' name='msrp' id='msrp' placeholder='Enter Referee Status'></label>
+  
+          
+  
+          <input class='button' type='submit'>
+  
+        </div>
+        </form>
+  
     <main>
 
 
