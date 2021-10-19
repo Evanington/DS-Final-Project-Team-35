@@ -1,7 +1,7 @@
-const Person = {
+const Controller = {
   data() {
     return {
-      refereeList: []
+      'refereeList': []
       }
   },
 
@@ -9,8 +9,8 @@ const Person = {
     fetchRefereeList() {
         fetch('/api/referee/index.php')
         .then( response => response.json() )
-        .then( (responseJson) => {                
-            this.refereeList = responseJson;                
+        .then( (parsedJson) => {                
+            this.refereeList = parsedJson;                
         })
         .catch( (err) => {
             console.error(err);
@@ -22,4 +22,4 @@ created() {
 }
 }
 
-Vue.createApp(Controller).mount('#controller')
+Vue.createApp(Controller).mount('#controller');
