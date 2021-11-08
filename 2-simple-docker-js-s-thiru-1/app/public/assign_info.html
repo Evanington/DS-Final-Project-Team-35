@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://unpkg.com/vue@next"></script>
+
+
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+  </head>
+    
+
+  <body>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+    <div class = 'container'>
+    <header class = 'row'>
+
+      <div class = 'col-lg-6 col-md-6 col-sm-6 col-xs-6'>
+        <h1>Michael "The Goat" Jordan</h1>
+      </div>
+
+    </header>
+      
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+      <a class="navbar-brand" href="#"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="index.html">Home </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Ref_Info.html">Referee Information </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Game_Info.html">Game Information </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="assign_info.html">Assignment Information </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+    <main class = 'row'>
+        <h1>Referee Assignments</h1>
+        <div class="divider"></div>
+        <br>
+        <br>
+        <div id="controller" class="container">
+        <div class="row align-items-start">
+          <div class="col col-4">
+            <h4>Select a referee below:</h4>
+            <ul class="list-group">
+              <li v-for="ref in refereeList" v-on:click="selectOffer(ref)"
+                :class="['list-group-item', {selected: selectedOffer && ref.Refid == selectedOffer.Refid}]">{{
+                ref.Name + ', ' + ref.Age}}</li>
+            </ul>
+          </div>
+    
+          <div class="col col-8" v-if="selectedOffer">
+            <h3>Assignments for {{ selectedOffer.Name + ', ' + selectedOffer.Age }}</h3>
+            <hr />
+    
+            <table class="table table-striped table-hover">
+              <thead>
+                <tr>
+                  <th>Game ID</th>
+                  <th>Referee ID</th>
+                  <th>Position</th>
+                  <th>Status</th>
+                  <th>Options</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="assignment in assignments">
+                  <td>{{ assignment.g_id }}</td>
+                  <td>{{ assignment.a_id }}</td>
+                  <td>{{ assignment.position }}</td>
+                  <td>{{ assignment.current_status }}</td>
+                  <td>
+                    <button type="button" style="margin: 0px 10px 0px 10px;" class="btn btn-outline-success btn-sm"
+                      v-on:click="selectAssignment(assignment)"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                        height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                        <path
+                          d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
+                      </svg></button>
+                    <button type="button" class="btn btn-outline-danger btn-sm"
+                      v-on:click="postDeleteAssignment(assignment)">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                        height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                        <path
+                          d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+                      </svg></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+    
+            <div class="noAssignemnts" v-if="! assignments.length">
+              <h3>No assignments.</h3>
+            </div>
+            <hr>
+            <h3>{{selectedAssignment === null ? "Add" : "Edit" }}</h3>
+            <div class="divider-2"></div>
+            <form v-on:submit.prevent="postAssignment">
+              <div class="row">
+                <div class="col">
+                  <label for="gameId">Game </label>
+                  <select aria-describedby="gameId" id="gameId" class="form-select" v-model="assignForm.g_id">
+                    <option v-for="game in games" :value="game.g_id">
+                      {{ "Field Number: " + game.field_num + " Start Date: " + game.start_date + " Start Time: " + game.start_time}}
+                    </option>
+                  </select>
+                </div>
+                <div class="col">
+                  <label for="refId">Referee</label>
+                  <select aria-describedby="refId" id="refId" class="form-select" v-model="assignForm.RefID">
+                    <option :value="selectedOffer.RefID">
+                      {{selectedOffer.Name + ", " + selectedOffer.Age}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+    
+              <div class="row">
+                <div class="col">
+                  <label for="position">Position</label>
+                  <input type="varchar" id="position" class="form-control" aria-describedby="position"
+                    placeholder="Enter Referee Position" v-model="assignForm.position">
+    
+                </div>
+                <div class="col">
+                  <label for="current_status">Assignment Status</label>
+                  <select class="form-select" id="current_status" aria-describedby="current_status"
+                    v-model="assignForm.current_status">
+                    <option disabled value="">Please select one</option>
+                    <option value="unassigned" selected>Unassigned</option>
+                    <option value="notified">Notified</option>
+                    <option value="declined">Declined</option>
+                    <option value="accepted">Accepted</option>
+                  </select>
+                </div>
+              </div>
+    
+              <div class="mb-3">
+    
+              </div>
+              <div style="margin-bottom: 50px">
+                <button type="submit" style="margin: 0px 10px 0px 0px;" class="btn btn-primary"><svg
+                    xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-check-lg"
+                    viewBox="0 0 20 20">
+                    <path
+                      d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
+                  </svg>{{selectedAssignment === null ? "Add" : "Edit" }}</button>
+                <button type="button" class="btn btn-outline-secondary" v-if="selectedAssignment"
+                  v-on:click="resetAssignForm"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                    fill="currentColor" class="bi bi-x-lg" viewBox="0 0 20 20">
+                  </svg>Cancel</button>
+              </div>
+            </form>
+          </div>
+          <p><a href="api/reports/assignment.php/?format=csv&RefID=' + selectedOffer.RefID" download>Download all assignments as CSV</a>
+        </div> 
+    
+      
+    </main>
+    <div class="center">
+      <footer>
+      |  Referee Information Center | <i>Supporting Your Love of the Game</i> | 
+      </footer>
+    </div>
+    </div>
+    <script src="js/index.js"></script>
+  </body>
+</html>

@@ -49,6 +49,9 @@
           <li class="nav-item">
             <a class="nav-link active" href="Game_Info.html">Game Information </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="assign_info.html">Assignment Information </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -56,50 +59,137 @@
 
     <main class = 'row'>
       <!-- <div class = 'one col-lg-12 col-md-12 col-sm-12 col-xs-12'> -->
-      <h2>Game Information</h2>
-    <div id='random' class='container'>
+      <h2>Game Information<a class="nav-link" href="game_view.html"><button style="float: right; height: 40px; width:200px; font-size: medium;">View games</button></a></h2>
       <p>Please find game information outlined in the table below. For urgent inquiries, contact the main office.</p>
-      <p>Note: field names and times are subject to change based on availability and inclement weather.</p>     
-    <table id = 'taskTable' class ='table table-bordered table-striped table-hover table-condensed'>
+      <p>Note: field names and times are subject to change based on availability and inclement weather.</p> 
+
+      <div id="controller" class='container'>   
+        <table id = 'taskTable' class ='table table-bordered table-striped table-hover table-condensed'>
+          <thead>
+            <tr>
+              <th class='text-center'>Game ID</th> 
+              <th class='text-center'>Field Number</th>
+              <th class='text-center'>Start Date</th>
+              <th class='text-center'>Start Time</th>
+              <th class='text-center'>Game Level</th>
+              <th class='text-center'>Number of Referees</th>
+            </tr>
+          </thead>
+    
+          <tbody>
+            <tr v-for= "game in games">
+              <td>{{game.g_id}}</td>
+              <td>{{game.field_num}}</td>
+              <td>{{game.start_date}}</td>
+              <td>{{game.start_time}}</td>
+              <td>{{game.game_level}}</td>
+              <td>{{game.num_of_refs}}</td>
+              <td>
+                <button type="button" class="btn btn-outline-secondary btn-sm"
+                              v-on:click="selectGame(game)">Edit</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm"
+                              v-on:click="postDeleteGame(game)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        
+  <!-- <div class = 'row'>
+  <!-- <h3>College Career</h3>
+  <p class = "earlylife">
+   
+  
+
+  <cite>Source: </cite>
+      <a href="https://en.wikipedia.org/wiki/Michael_Jordan" target="_blank">https://en.wikipedia.org/wiki/Michael_Jordan</a>
+
+  </p> -->
+  <p><a href="api/reports/games.php/?format=csv" download>Download as CSV</a>
+
+  <h3 class="text-center">{{ selectedGame === null ? "Add a new" : "Edit " }} Game</h3>
+  <form v-on:submit.prevent="postGame">
+    <div class = 'one col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+    <div class="form-group">
+      <label for="field_num" class="form-label">Field Number</label>
+    <input type="number" v-model="gameForm.field_num" class="form-control" id="field_num" name="field_num"><br>
+      <!-- <label for ='RefName'>Referee Name: <input type='text' name='refname' id='author' placeholder='Enter Name'></label> -->
+    </div>
+    <div class="form-group">
+      <label for="start_date" class="form-label">Start Date</label>
+    <input type="date" v-model="gameForm.start_date" class="form-control" id="start_date" name="start_date"><br>
+      <!-- <label for ='RefAge'>Referee Age: <input type='text' name='refage' id='yearpublished' placeholder='Enter Referee Age'></label> -->
+    </div>
+    <div class="form-group">
+      <label for="start_time" class="form-label">Start Time</label>
+    <input type="time" v-model="gameForm.start_time" class="form-control" id="start_time" name="start_time"><br>
+      <!-- <label for ='RefGrade'>Referee Grade: <input type='text' name='refgrade' id='publisher' placeholder='Enter Referee Grade'></label> -->
+    </div>
+      
+    <div class="form-group">
+      <label for="game_level" class="form-label">Game Level</label>
+    <input type="number" v-model="gameForm.game_level" class="form-control" id="game_level" name="game_level"><br>
+    
+    </div>
+     
+    <div class="form-group">
+      <label for="num_of_refs" class="form-label">Number of Referees</label>
+    <input type="number" v-model="gameForm.num_of_refs" class="form-control" id="num_of_refs" name="num_of_refs"><br>
+    
+    </div>
+     
+    
+    <!-- <label for ='PositionStatus'>Position Status: <input type='text' name='pagecount' id='pagecount' placeholder='Enter Position Status'></label>
+
+      <label for ='RefereeStatus'>Referee Status: <input type='text' name='msrp' id='msrp' placeholder='Enter Referee Status'></label>
+-->
+      
+
+      <button type="submit" class="btn btn-primary">{{ selectedgame === null ? "Add " : "Edit " }} Referee </button>
+    <button type="button" class="btn btn-dark" v-if="selectedgame" v-on:click="resetGameForm">Cancel</button>
+
+    </div>
+    </form> <br>
+
+  <div>
+    <button type="button" class="btn btn-outline-secondary" v-on:click="fetchUnassigned">View Unassigned Games</button>
+    <table id = 'unassigned' class ='table table-bordered table-striped table-hover table-condensed'>
       <thead>
         <tr>
           <th class='text-center'>Game ID</th> 
-          <th class='text-center'>Field Name</th>
-          <th class='text-center'>Time</th>
-          <th class='text-center'>Referee ID</th>
+          <th class='text-center'>Field Number</th>
+          <th class='text-center'>Start Date</th>
+          <th class='text-center'>Start Time</th>
+          <th class='text-center'>Game Level</th>
+          <th class='text-center'>Number of Referees</th>
+          <th class='text-center'>Functions</th>
         </tr>
       </thead>
 
       <tbody>
-        <tr v-for= "book in books">
-          <td>{{book.title}}</td>
-          <td>{{book.author}}</td>
-          <td>{{book.year_published}}</td>
-          <td>{{book.publisher}}</td>
-          <td>{{book.page_count}}</td>
-          <td>{{prettyDollar (book.msrp)}}</td>
-
+        <tr v-for= "game in unassignedGames">
+          <td>{{game.g_id}}</td>
+          <td>{{game.field_num}}</td>
+          <td>{{game.start_date}}</td>
+          <td>{{game.start_time}}</td>
+          <td>{{game.game_level}}</td>
+          <td>{{game.num_of_refs}}</td>
+          <td>
+            <button type="button" class="btn btn-outline-secondary btn-sm"
+                          v-on:click="selectGame(game)">Edit</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm"
+                          v-on:click="postDeleteGame(game)">Delete</button>
+          </td>
         </tr>
       </tbody>
-    </table>
-    </div>
+    </table>    
+    <p><a href="api/reports/index.php/?format=csv" download>Download as CSV</a>
+
+  </div>  
 
 
-    <form>
-      <div class = 'one col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-        <label for ='game_id'>Game ID: <input type='text' name='game_id' id='game_id' placeholder='Enter Game ID'></label>
+  </div>  
 
-        <label for ='field_name'>Field Name: <input type='text' name='field_name' id='field_name' placeholder='Enter Field Name'></label>
-
-        <label for ='time'>Time: <input type='text' name='time' id='time' placeholder='Enter Time'></label>
-
-        <label for ='referee_id'>Referee ID: <input type='text' name='referee_id' id='referee_id' placeholder='Enter Referee ID'></label>
-       
-
-        <input class='button' type='submit'>
-
-      </div>
-      </form>
+  
 
       
     </main>
@@ -109,11 +199,6 @@
       </footer>
     </div>
     </div>
-    <script src="js/tablesort.min.js"></script>
-    <script>
-      // Tablesort plugin from http://tristen.ca/tablesort/demo/
-      new Tablesort(document.getElementById('taskTable'));
-    </script>
     <script src="js/index.js"></script>
   </body>
 </html>

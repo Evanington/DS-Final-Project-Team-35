@@ -50,6 +50,9 @@
           <li class="nav-item">
             <a class="nav-link" href="Game_Info.html">Game Information </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="assign_info.html">Assignment Information </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -88,18 +91,26 @@
         
               <tbody>
                 <tr v-for= "ref in refereeList">
-                  <td>{{ref.RefId}}</td>
+                  <td>{{ref.RefID}}</td>
                   <td>{{ref.Name}}</td>
                   <td>{{ref.Age}}</td>
                   <td>{{ref.Grade}}</td>
                   <td>{{ref.PosStatus}}</td>
                   <td>{{ref.RefereeSkillRating}}</td>
-        
+                  <td>
+                    <button type="button" class="btn btn-outline-secondary btn-sm"
+                                  v-on:click="selectOfferToEdit(ref)">Edit</button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm"
+                                  v-on:click="postDeleteOffer(ref)">Delete</button>
+                  </td>
                 </tr>
               </tbody>
             </table>
-            </div>
-      <div class = 'row'>
+
+            <p><a href="api/reports/referees.php/?format=csv" download>Download as CSV</a>
+
+            
+      <!-- <div class = 'row'>
       <!-- <h3>College Career</h3>
       <p class = "earlylife">
        
@@ -109,29 +120,53 @@
           <a href="https://en.wikipedia.org/wiki/Michael_Jordan" target="_blank">https://en.wikipedia.org/wiki/Michael_Jordan</a>
 
       </p> -->
-      </div>
+       -->
     
-      <form>
+      <h3 class="text-center">{{ selectedOffer === null ? "Add a new" : "Edit " }} Referee</h3>
+      <form v-on:submit.prevent="postOffer">
         <div class = 'one col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-          <label for ='RefId'>RefId: <input type='text' name='refid' id='title' placeholder='Enter RefId'></label>
-  
-          <label for ='RefName'>Referee Name: <input type='text' name='refname' id='author' placeholder='Enter Name'></label>
-  
-          <label for ='RefAge'>Referee Age: <input type='text' name='refage' id='yearpublished' placeholder='Enter Referee Age'></label>
-  
-          <label for ='RefGrade'>Referee Grade: <input type='text' name='refgrade' id='publisher' placeholder='Enter Referee Grade'></label>
-  
-          <label for ='PositionStatus'>Position Status: <input type='text' name='pagecount' id='pagecount' placeholder='Enter Position Status'></label>
+        <div class="form-group">
+          <label for="Name" class="form-label">Name</label>
+        <input type="text" v-model="offerForm.Name" class="form-control" id="Name" name="Name"><br>
+          <!-- <label for ='RefName'>Referee Name: <input type='text' name='refname' id='author' placeholder='Enter Name'></label> -->
+        </div>
+        <div class="form-group">
+          <label for="Age" class="form-label">Age</label>
+        <input type="number" v-model="offerForm.Age" class="form-control" id="Age" name="Age"><br>
+          <!-- <label for ='RefAge'>Referee Age: <input type='text' name='refage' id='yearpublished' placeholder='Enter Referee Age'></label> -->
+        </div>
+        <div class="form-group">
+          <label for="Grade" class="form-label">Grade</label>
+        <input type="number" v-model="offerForm.Grade" class="form-control" id="Grade" name="Grade"><br>
+          <!-- <label for ='RefGrade'>Referee Grade: <input type='text' name='refgrade' id='publisher' placeholder='Enter Referee Grade'></label> -->
+        </div>
+          
+        <div class="form-group">
+          <label for="PosStatus" class="form-label">PosStatus</label>
+        <input type="text" v-model="offerForm.PosStatus" class="form-control" id="PosStatus" name="PosStatus"><br>
+        
+        </div>
+         
+        <div class="form-group">
+          <label for="RefereeSkillRating" class="form-label">RefereeSkillRating</label>
+        <input type="number" v-model="offerForm.RefereeSkillRating" class="form-control" id="RefereeSkillRating" name="RefereeSkillRating"><br>
+        
+        </div>
+         
+        
+        <!-- <label for ='PositionStatus'>Position Status: <input type='text' name='pagecount' id='pagecount' placeholder='Enter Position Status'></label>
   
           <label for ='RefereeStatus'>Referee Status: <input type='text' name='msrp' id='msrp' placeholder='Enter Referee Status'></label>
-  
+   -->
           
   
-          <input class='button' type='submit'>
+          <button type="submit" class="btn btn-primary">{{ selectedOffer === null ? "Add " : "Edit " }} Referee </button>
+        <button type="button" class="btn btn-dark" v-if="selectedOffer" v-on:click="resetOfferForm">Cancel</button>
   
         </div>
         </form>
-  
+      </div>
+    </div>
     <main>
 
       <div class="center">
